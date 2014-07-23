@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <set>
+    <wall>REAR</wall>
+    <accretionValue>Test</accretionValue>
+  </set>
+  <set>
+    <wall>RIGHT</wall>
+    <itemURL>http://localhost:8080/rest/items/Light_FF_Bath_Mirror</itemURL>
+    <onCommand>ON</onCommand>
+    <offCommand>OFF</offCommand>
+  </set>
+  <set>
+    <wall>LEFT</wall>
+    <itemURL>http://localhost:8080/rest/items/Light_FF_Bath_Ceiling</itemURL>
+    <onCommand>ON</onCommand>
+    <offCommand>OFF</offCommand>
+  </set>
+  <roomDepth>4000.0</roomDepth>
+</configuration>
