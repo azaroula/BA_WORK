@@ -21,6 +21,8 @@ public class ConfigureSupplier {
 	private List<Element> elementsList;
 	private List<ConfigSet> configSetList;
 	private Element roomDepth;
+	private Element roomHeight;
+	private Element roomWidth;
 	private Document doc;
 	private String path;
 	
@@ -31,6 +33,8 @@ public class ConfigureSupplier {
 		Element config = doc.getRootElement();
 		elementsList = config.getChildren( "set" );
 		roomDepth = config.getChild("roomDepth");
+		roomHeight = config.getChild("roomHeight");
+		roomWidth = config.getChild("roomWidth");
 		configSetList = new ArrayList<ConfigSet>();
 		generateFromXML();
 	}
@@ -75,6 +79,14 @@ public class ConfigureSupplier {
 	
 	public float getRoomDepth() {
 		return Float.parseFloat(roomDepth.getText());
+	}
+	
+	public float getRoomHeight() {
+		return Float.parseFloat(roomHeight.getText());
+	}
+	
+	public float getRoomWidth() {
+		return Float.parseFloat(roomWidth.getText());
 	}
 	
 	public void setRoomDepth(float depthValue) {

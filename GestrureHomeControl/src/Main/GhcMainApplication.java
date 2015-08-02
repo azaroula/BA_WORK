@@ -36,8 +36,6 @@ public class GhcMainApplication extends JFrame{
 		    setResizable(false);
 		    setLocationRelativeTo(null);
 		    setVisible(true);
-		   // TestAccretionAddon test = new TestAccretionAddon();
-		   // core.addObserver(test);
 		    
 	}
 	

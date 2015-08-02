@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
 import org.OpenNI.CalibrationProgressEventArgs;
 import org.OpenNI.CalibrationProgressStatus;
 import org.OpenNI.DepthGenerator;
@@ -24,6 +25,7 @@ import org.OpenNI.UserGenerator;
 
 
 
+
 public class SkeletonTracker {
 	
 	 
@@ -38,7 +40,7 @@ public class SkeletonTracker {
 	 public SkeletonTracker(UserGenerator userGen, DepthGenerator depthGen) {
 		 
 		 this.userGen = userGen;
-		 
+		
 		 this.depthGen = depthGen;
 		 configure();
 		 userSkels = new HashMap<Integer, HashMap<SkeletonJoint, SkeletonJointPosition>>(); 

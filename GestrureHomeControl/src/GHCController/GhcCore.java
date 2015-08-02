@@ -17,12 +17,12 @@ import GHCModel.ConfigureSupplier;
 import GHCModel.SensorGenerator;
 import GHCModel.EventScheduler;
 import GHCModel.InitGestureDetector;
-import GHCModel.PoseDetector;
+import GHCModel.GestureDetector;
 import GHCModel.RESTClient;
 import GHCModel.SkeletonTracker;
 import GHCModel.SoundPlayer;
 import GHCModel.GHCState;
-import GHCModel.StateManager;
+import GHCModel.StateConnector;
 import GHCView.DepthMapPainter;
 import GHCView.SkeletonPainter;
 
@@ -35,7 +35,7 @@ public class GhcCore extends Observable implements Runnable {
 	private SensorGenerator generator;
 	private SkeletonTracker stracker;
 	private SkeletonPainter spainter;
-	private PoseDetector  detector;
+	private GestureDetector  detector;
 	private ConfigureSupplier supplier;
 	private EventScheduler scheduler;
 	private boolean isEventMatch;
@@ -61,7 +61,7 @@ public class GhcCore extends Observable implements Runnable {
 			spainter = new SkeletonPainter(stracker.getData(), generator.getUserGenerator(),
 									   stracker.getSkeletonCapability(), generator.getDepthGenerator());
 			painter.setSkeletonPainter(spainter);
-			detector = new PoseDetector(stracker.getSkeletonCapability(), 
+			detector = new GestureDetector(stracker.getSkeletonCapability(), 
 										generator.getUserGenerator(), generator.getDepthGenerator());
 			initGestureDetector = new InitGestureDetector(context, stracker);
 			
@@ -87,6 +87,8 @@ public class GhcCore extends Observable implements Runnable {
 				e.printStackTrace();
 				System.exit(1);
 			}
+			detector.setHeight(supplier.getRoomHeight());
+			detector.setWidth(supplier.getRoomWidth());
 			new Thread(this).start(); 
 		
 		} catch (GeneralException e) {
@@ -123,9 +125,12 @@ public class GhcCore extends Observable implements Runnable {
 		      try {
 				for (int i = 0; i < stracker.getUserList().size(); i++) {
 					if (stracker.getSkeletonCapability().isSkeletonTracking(stracker.getUserList().get(i))) {
-							roomDepth = (supplier.getRoomDepth() < stracker.getUserDepth(stracker.getUserList().get(i))) 
-							? stracker.getUserDepth(stracker.getUserList().get(i)) : supplier.getRoomDepth();
-		
+							if (supplier.getRoomDepth() < stracker.getUserDepth(stracker.getUserList().get(i))) {
+								roomDepth = stracker.getUserDepth(stracker.getUserList().get(i));
+								supplier.setRoomDepth(roomDepth);
+							}
+							else
+								roomDepth = supplier.getRoomDepth();
 							detector.setDepth(roomDepth);
 						if (initGestureDetector.isInitPoseFlag()) {
 							if(initGestureDetector.isInitPoseMatch()){
@@ -157,7 +162,7 @@ public class GhcCore extends Observable implements Runnable {
 												if(supplier.get(j).getAccretionValue() != null) {
 													initGestureDetector.setInitPoseMatch(false);
 													accretionValue = supplier.get(j).getAccretionValue();
-													state = StateManager.changeState(supplier.get(j).getAccretionValue());
+													state = StateConnector.changeState(supplier.get(j).getAccretionValue());
 													state.handle(this);
 													setChanged();
 													notifyObservers(supplier.get(j).getAccretionValue());
@@ -204,8 +209,7 @@ public class GhcCore extends Observable implements Runnable {
 		   	System.exit(0);	
 	}
 	
-	public void close() {  
-		supplier.setRoomDepth(roomDepth);
+	public void close() { 
 		isRunning = false;  	
 	} 
 	

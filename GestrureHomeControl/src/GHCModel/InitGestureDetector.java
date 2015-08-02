@@ -112,19 +112,21 @@ public class InitGestureDetector {
 		try {
 			for (int i=0; i < stracker.getUserList().size(); i++){
 				
-				SkeletonJointPosition posRight = stracker.getSkeletonCapability().getSkeletonJointPosition(stracker.getUserList().get(i), SkeletonJoint.RIGHT_HAND);
+				SkeletonJointPosition posRight = stracker.getSkeletonCapability().
+						getSkeletonJointPosition(stracker.getUserList().get(i), SkeletonJoint.RIGHT_HAND);
 				Point3D UserRightHandPoint = posRight.getPosition();
-				if(Math.abs(UserRightHandPoint.getX() - handPoint.getX()) <= 100 &&
-			       Math.abs(UserRightHandPoint.getY() - handPoint.getY()) <= 100 &&
-			       Math.abs(UserRightHandPoint.getZ() - handPoint.getZ()) <= 100){
+				if(Math.abs(UserRightHandPoint.getX() - handPoint.getX()) <= 150 &&
+			       Math.abs(UserRightHandPoint.getY() - handPoint.getY()) <= 150 &&
+			       Math.abs(UserRightHandPoint.getZ() - handPoint.getZ()) <= 150){
 					user = stracker.getUserList().get(i);
 					break;
 				}
-				SkeletonJointPosition posLeft = stracker.getSkeletonCapability().getSkeletonJointPosition(stracker.getUserList().get(i), SkeletonJoint.LEFT_HAND);
+				SkeletonJointPosition posLeft = stracker.getSkeletonCapability().
+						getSkeletonJointPosition(stracker.getUserList().get(i), SkeletonJoint.LEFT_HAND);
 				Point3D UserLeftHandPoint = posLeft.getPosition();
-				if(Math.abs(UserLeftHandPoint.getX() - handPoint.getX()) <= 100 &&
-				   Math.abs(UserLeftHandPoint.getY() - handPoint.getY()) <= 100 &&
-			       Math.abs(UserLeftHandPoint.getZ() - handPoint.getZ()) <= 100){
+				if(Math.abs(UserLeftHandPoint.getX() - handPoint.getX()) <= 150 &&
+				   Math.abs(UserLeftHandPoint.getY() - handPoint.getY()) <= 150 &&
+			       Math.abs(UserLeftHandPoint.getZ() - handPoint.getZ()) <= 150){
 					user = stracker.getUserList().get(i);
 					break;
 				}
