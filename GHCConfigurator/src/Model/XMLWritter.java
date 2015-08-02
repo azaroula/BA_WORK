@@ -36,6 +36,11 @@ public class XMLWritter {
 	private XMLEvent eoffCommand;
 	private XMLEvent sRoomDepth;
 	private XMLEvent eRoomDepth;
+	private XMLEvent sRoomHeight;
+	private XMLEvent eRoomHeight;
+	private XMLEvent sRoomWidth;
+	private XMLEvent eRoomWidth;
+	
 	
 	
 
@@ -80,6 +85,12 @@ public class XMLWritter {
 		
 		sRoomDepth = eventFactory.createStartElement("", "", "roomDepth");
 		eRoomDepth = eventFactory.createEndElement("", "", "roomDepth");
+		
+		sRoomHeight = eventFactory.createStartElement("", "", "roomHeight");
+		eRoomHeight = eventFactory.createEndElement("", "", "roomHeight");
+		
+		sRoomWidth = eventFactory.createStartElement("", "", "roomWidth");
+		eRoomWidth = eventFactory.createEndElement("", "", "roomWidth");
 		
 		
 		writer.add(header);
@@ -135,11 +146,22 @@ public class XMLWritter {
 		
 		
 	}
-	public void executeRoomDepth(String depthValue) throws XMLStreamException {
+	public void setRoomDimension(String depthValue, String heightValue, String widthValue) throws XMLStreamException {
 		writer.add(sRoomDepth);
 		XMLEvent roomDepth = eventFactory.createIgnorableSpace(depthValue);
 		writer.add(roomDepth);
 		writer.add(eRoomDepth);
+		
+		writer.add(sRoomHeight);
+		XMLEvent roomHeight = eventFactory.createIgnorableSpace(heightValue);
+		writer.add(roomHeight);
+		writer.add(eRoomHeight);
+		
+		writer.add(sRoomWidth);
+		XMLEvent roomWidth = eventFactory.createIgnorableSpace(widthValue);
+		writer.add(roomWidth);
+		writer.add(eRoomWidth);
+		
 	}
 	
 	public void complete() throws XMLStreamException {

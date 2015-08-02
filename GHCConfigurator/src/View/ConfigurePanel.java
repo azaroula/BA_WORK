@@ -66,7 +66,9 @@ public class ConfigurePanel extends JPanel {
 		add(addonBox);
 		
 		componentSwitchPanel = new ComponentSwitchPanel();
-		componentSwitchPanel.setBounds(0, 112, 540, 225);
+		componentSwitchPanel.getTxtInactiveState().setLocation(130, 93);
+		componentSwitchPanel.getTxtStatus().setLocation(365, 93);
+		componentSwitchPanel.setBounds(0, 112, 540, 250);
 		componentSwitchPanel.setVisible(false);
 		add(componentSwitchPanel);
 

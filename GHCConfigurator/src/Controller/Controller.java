@@ -98,6 +98,10 @@ public class Controller implements ActionListener, ItemListener {
 				}			
 			}
 			frame.getTxtRoomDepth().setText(String.valueOf(supplier.getRoomDepth()));
+			frame.getTxtRoomHeight().setText(String.valueOf(supplier.getRoomHeight()));
+			frame.getTxtRoomWidth().setText(String.valueOf(supplier.getRoomWidth()));
+			
+			
 			
 		}
 	}
@@ -212,7 +216,8 @@ public class Controller implements ActionListener, ItemListener {
 				
 			}
 			try {
-				writter.executeRoomDepth(frame.getTxtRoomDepth().getText());
+				writter.setRoomDimension(frame.getTxtRoomDepth().getText(), 
+						frame.getTxtRoomHeight().getText(), frame.getTxtRoomWidth().getText());
 			} catch (XMLStreamException e2) {
 				System.err.println(e2);
 				e2.printStackTrace();

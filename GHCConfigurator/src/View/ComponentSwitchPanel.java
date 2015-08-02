@@ -14,6 +14,7 @@ public class ComponentSwitchPanel extends JPanel {
 	private JTextField txtActiveState;
 	private JTextField txtInactiveState;
 	private JTextField txtStatus;
+	
 
 	/**
 	 * Create the panel.
@@ -32,23 +33,23 @@ public class ComponentSwitchPanel extends JPanel {
 		txtActiveState.setColumns(20);
 		
 		JLabel lblNewLabel = new JLabel("ON command name:");
-		lblNewLabel.setBounds(10, 67, 165, 14);
+		lblNewLabel.setBounds(10, 97, 165, 14);
 		add(lblNewLabel);
 		
 		txtInactiveState = new JTextField();
 		txtInactiveState.setColumns(20);
 		txtInactiveState.setForeground(Color.GREEN);
-		txtInactiveState.setBounds(10, 92, 91, 25);
+		txtInactiveState.setBounds(106, 91, 91, 25);
 		add(txtInactiveState);
 		
 		JLabel lblCheckStatusUrl = new JLabel("OFF command name:");
-		lblCheckStatusUrl.setBounds(10, 130, 178, 14);
+		lblCheckStatusUrl.setBounds(242, 97, 125, 14);
 		add(lblCheckStatusUrl);
 		
 		txtStatus = new JTextField();
 		txtStatus.setColumns(20);
 		txtStatus.setForeground(Color.RED);
-		txtStatus.setBounds(10, 154, 91, 25);
+		txtStatus.setBounds(342, 92, 91, 25);
 		add(txtStatus);
 		
 
